@@ -18,12 +18,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::post('fibonacci', 'FibonacciController@fibonacci');
+//middleware added due to Cors errors
+Route::group(['middleware'=> 'cors'], function(){
 Route::post('fibonacci', function(Request $request){
+    
+    $inputInt = intval($request->input('param'));
+
     return response()->json([
-        'testOutput' => $request->input('param')
+        'testOutput' => $inputInt
     ]);
     
 });
+});
 
-//logic to return correct response will go here
+//logic handled within route, thou I am ssure there is a better way to do this
