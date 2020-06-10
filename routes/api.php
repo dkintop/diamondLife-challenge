@@ -18,4 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('fibonacci', 'FibonacciController@fibonacci');
+// Route::post('fibonacci', 'FibonacciController@fibonacci');
+Route::post('fibonacci', function(){
+    return response()->json([
+        'testOutput' => 'testOutput'
+    ]);
+    
+});
+
+//logic to return correct response will go here
