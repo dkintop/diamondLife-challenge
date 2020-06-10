@@ -20,15 +20,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //middleware added due to Cors errors
 Route::group(['middleware'=> 'cors'], function(){
-Route::post('fibonacci', function(Request $request){
+    Route::post('fibonacci', function(Request $request){
     
-    $inputInt = intval($request->input('param'));
+        $inputInt = intval($request->input('param'));
+        $num1 = 0;
+        $num2 = 1;
+        $nextVal = 1 ;
+        while($nextVal <= $inputInt){
+            $nextVal = $num1 + $num2;
+            $num1 = $num2;
+            $num2 = $nextVal;
+        }
 
-    return response()->json([
-        'testOutput' => $inputInt
-    ]);
+        return response()->json([
+            'output' => $nextVal
+        ]);
     
-});
+    });
 });
 
-//logic handled within route, thou I am ssure there is a better way to do this
+//logic handled within route, though I am sure there is a better way to do this
