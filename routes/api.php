@@ -19,9 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // Route::post('fibonacci', 'FibonacciController@fibonacci');
-Route::post('fibonacci', function(){
+Route::post('fibonacci', function(Request $request){
     return response()->json([
-        'testOutput' => 'testOutput'
+        'testOutput' => $request->input('param')
     ]);
     
 });
